@@ -1,13 +1,17 @@
-from flask import Flask, render_template, request
-from message import greet
+from flask import Flask, render_template
+import os
+import message
 
 my_app = Flask(__name__)
 
 
 @my_app.route('/')
 def main():
-    ip = request.headers['X-Forwarded-For']
-    return render_template('index.html', message=greet(ip))
+    if os.getenv('DEPLOY') == 'heroku':
+        ip = message.get_client_ip_address()
+    else:
+        ip = message.retrieve_local_ip_adress()
+    return render_template('index.html', message=message.greet(ip))
 
 
 if __name__ == '__main__':
