@@ -1,12 +1,4 @@
 import requests
-from flask import request
-
-
-def retrieve_local_ip_adress():
-    """Return IP address of our computer."""
-    response = requests.get('https://api.ipify.org')
-
-    return response.text
 
 
 def get_geolocation(ip_address):
@@ -28,11 +20,6 @@ def get_weather(coords):
     response = requests.get(url, params=params, headers=headers)
 
     return response.json()['properties']['timeseries'][0]['data']['instant']['details']['air_temperature']
-
-
-def get_client_ip_address():
-    """Return ip address of the client"""
-    return request.headers['X-Forwarded-For']
 
 
 def greet(ip_address):
