@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath wqu_app app: my_app
+web: gunicorn --pythonpath wqu_app app:my_app
