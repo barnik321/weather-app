@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WQU Project</title>
+        <title>Weather App</title>
     </head>
-    <h1>WQU Project</h1>
+    <h1>Weather App demo</h1>
     <body>
         <div class="text content">
-            <p> {{ message | safe}}</p>
+            <p>
+                Hello the temperature in <font color="#178f23">
+                <b>{{ place | safe}}</b></font> is
+                <font color="#095e13"><b>{{ temp | safe}}°C</b></font>.
+            </p>
+            <p>Org: {{ org | safe}}</p>
         </div>
+        <font size="1"> Source code <a href="https://github.com/dopApod17/wqu_project">here</a></font>
     </body>
 </html>

@@ -12,7 +12,9 @@ def main():
         ip = IP.get_client_ip_address()
     else:
         ip = IP.retrieve_local_ip_adress()
-    return render_template('index.html', message=greeting.greet(ip))
+
+    results = dict(zip(['place', 'temp', 'org'], greeting.greet(ip)))
+    return render_template('index.html', **results)
 
 
 if __name__ == '__main__':

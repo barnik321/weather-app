@@ -5,9 +5,15 @@ def get_geolocation(ip_address):
     """Return gelociaton of an IP address."""
     response = requests.get(f'https://ipinfo.io/{ip_address}')
     data = response.json()
-    coords = [float(coord) for coord in data['loc'].split(',')]
+    return data
 
-    return coords
+
+def location_details(location_data):
+    coords = location_data['loc'].split(',')
+    place = location_data['city'] + ', ' + location_data['country']
+    org = location_data['org']
+
+    return coords, place, org
 
 
 def get_weather(coords):
@@ -23,10 +29,11 @@ def get_weather(coords):
 
 
 def greet(ip_address):
-    coords = get_geolocation(ip_address)
+    l_data = get_geolocation(ip_address)
+    coords, place, org = location_details(l_data)
     temp = get_weather(coords)
 
-    return f'Hello the temperature is {temp} deg C'
+    return place, temp, org
 
 
 # if __name__ == '__main__':
